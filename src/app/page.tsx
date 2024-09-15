@@ -1,101 +1,192 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardContent,
+} from '@/components/ui/card';
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog';
+
+const navigation = [
+	{ name: 'Services', href: '/services' },
+	{ name: 'Portfolio', href: '/portfolio' },
+	{ name: 'About', href: '/about' },
+	{ name: 'Contact', href: '/contact' },
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	return (
+		<div className="bg-background text-foreground">
+			<header className="absolute inset-x-0 top-0 z-50">
+				<nav
+					className="flex items-center justify-between p-6 lg:px-8"
+					aria-label="Global">
+					<div className="flex lg:flex-1">
+						<a
+							href="#"
+							className="-m-1.5 p-1.5">
+							<span className="sr-only">Your Company</span>
+							<img
+								className="h-8 w-auto"
+								src="/path-to-your-logo.png"
+								alt="Agency Logo"
+							/>
+						</a>
+					</div>
+					<div className="flex lg:hidden">
+						<Dialog
+							open={mobileMenuOpen}
+							onOpenChange={setMobileMenuOpen}>
+							<DialogTrigger asChild>
+								<Button
+									variant="outline"
+									size="icon">
+									<span className="sr-only">Open main menu</span>
+									<svg
+										className="h-6 w-6"
+										fill="none"
+										viewBox="0 0 24 24"
+										strokeWidth="1.5"
+										stroke="currentColor"
+										aria-hidden="true">
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+										/>
+									</svg>
+								</Button>
+							</DialogTrigger>
+							<DialogContent>
+								<DialogHeader>
+									<DialogTitle>Menu</DialogTitle>
+								</DialogHeader>
+								<div className="mt-6 flow-root">
+									<div className="-my-6 divide-y divide-gray-500/10">
+										<div className="space-y-2 py-6">
+											{navigation.map((item) => (
+												<a
+													key={item.name}
+													href={item.href}
+													className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-accent">
+													{item.name}
+												</a>
+											))}
+										</div>
+									</div>
+								</div>
+							</DialogContent>
+						</Dialog>
+					</div>
+					<div className="hidden lg:flex lg:gap-x-12">
+						{navigation.map((item) => (
+							<a
+								key={item.name}
+								href={item.href}
+								className="text-sm font-semibold leading-6">
+								{item.name}
+							</a>
+						))}
+					</div>
+					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
+						<Button asChild>
+							<a href="#">Get Started</a>
+						</Button>
+					</div>
+				</nav>
+			</header>
+
+			<main className="isolate">
+				{/* Hero section */}
+				<div className="relative pt-14">
+					<div className="py-24 sm:py-32">
+						<div className="mx-auto max-w-7xl px-6 lg:px-8">
+							<div className="mx-auto max-w-2xl text-center">
+								<h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+									Skyrocket Your Revenue
+								</h1>
+								<p className="mt-6 text-lg leading-8 text-muted-foreground">
+									Get a high-converting website, landing page, and growth
+									strategy - all for one unbeatable price.
+								</p>
+								<div className="mt-10 flex items-center justify-center gap-x-6">
+									<Button size="lg">Get started</Button>
+									<Button
+										variant="link"
+										size="lg">
+										Learn more <span aria-hidden="true">→</span>
+									</Button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* Grand Slam Offer section */}
+				<div className="py-24 sm:py-32">
+					<div className="mx-auto max-w-7xl px-6 lg:px-8">
+						<div className="mx-auto max-w-2xl lg:text-center">
+							<h2 className="text-base font-semibold leading-7 text-primary">
+								Limited Time Offer
+							</h2>
+							<p className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+								Our Grand Slam Package
+							</p>
+							<p className="mt-6 text-lg leading-8 text-muted-foreground">
+								Get everything you need to dominate your market online - at an
+								unbeatable value.
+							</p>
+						</div>
+						<div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+							<div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+								{[
+									{
+										name: 'High-Value Offer',
+										description:
+											'Custom website design, SEO-optimized landing page, and 3-month growth strategy.',
+									},
+									{
+										name: 'Risk Reversal',
+										description:
+											'100% satisfaction guarantee. If you are not happy, we will work until you are.',
+									},
+									{
+										name: 'Bonus Stack',
+										description:
+											'Free logo design, 1-year hosting, and monthly performance reports.',
+									},
+								].map((feature) => (
+									<Card key={feature.name}>
+										<CardHeader>
+											<CardTitle>{feature.name}</CardTitle>
+										</CardHeader>
+										<CardContent>
+											<CardDescription>{feature.description}</CardDescription>
+										</CardContent>
+									</Card>
+								))}
+							</div>
+						</div>
+						<div className="mt-10 flex items-center justify-center">
+							<Button size="lg">
+								Claim Your Offer Now - Limited Spots Available!
+							</Button>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	);
 }
