@@ -153,17 +153,17 @@ export default function Home() {
 							<div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
 								{[
 									{
-										name: 'High-Value Offer',
+										name: 'All-in-One',
 										description:
 											'Custom website design, SEO-optimized landing page, and 3-month growth strategy.',
 									},
 									{
-										name: 'Risk Reversal',
+										name: 'Risk Free',
 										description:
 											'100% satisfaction guarantee. If you are not happy, we will work until you are.',
 									},
 									{
-										name: 'Bonus Stack',
+										name: 'Bonus',
 										description:
 											'Free logo design, 1-year hosting, and monthly performance reports.',
 									},
